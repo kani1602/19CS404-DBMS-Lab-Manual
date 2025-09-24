@@ -1,3 +1,4 @@
+
 # ER Diagram Workshop – Submission Template
 
 ## Objective
@@ -21,33 +22,42 @@ FlexiFit Gym wants a database to manage its members, trainers, and fitness progr
 - Attendance recorded for each session.  
 - Payments tracked for memberships and sessions.
 
-### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_fitness.png)
+### ER Diagram: 
+<img width="1251" height="886" alt="Screenshot 2025-09-22 131549" src="https://github.com/user-attachments/assets/2c081437-3e91-4ee6-90e3-374247e2bd51" />
+
 
 ### Entities and Attributes
 
-| Entity | Attributes (PK, FK) | Notes |
+| Entity | Attributes (PK, FK)| Notes |
 |--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+|Members |type,name,date      |       |
+|Trainers|name,specifications |       |
+|Attendance|session,date,status|      |
+|Programs|Program_name        |       |
+|Payment |date,amount,method  |       |
+|Training|duration,time       |       |
+ session                      |       |
 
 ### Relationships and Constraints
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+| Relationship     | Entities Involved             | Cardinality (Min-Max)|
+| ---------------- | ----------------------------- | -------------------- |
+| **Choose**       | Members ↔ Training Session    | Many-to-Many (M\:N)  |
+| **Register**     | Members ↔ Programs            | Many-to-Many (M\:N)  |
+| **Assigned\_to** | Trainers ↔ Programs           | Many-to-Many (M\:N)  |
+| **Records**      | Attendance ↔ Training Session | Many-to-Many (M\:N)  |
+| **Makes**        | Members ↔ Payment             | One-to-Many (1\:M)   |
+
 
 ### Assumptions
-- 
-- 
-- 
-
+```
+Members: Each member can choose multiple training sessions (M:N relationship with Choose).
+Training Sessions: Each session can have multiple members and multiple trainers.
+Trainers: A trainer can be assigned to multiple training sessions (Assigned_to).
+Programs: Each program can have multiple sessions, and members can register for multiple programs (Register).
+Attendance: Attendance is recorded per session for each member, including status and date.
+Payment: Each member can make multiple payments, linked to programs or sessions (Makes).
+```
 ---
 
 # Scenario B: City Library Event & Book Lending System
